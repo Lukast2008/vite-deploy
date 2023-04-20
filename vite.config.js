@@ -5,10 +5,10 @@ import svgr from "vite-plugin-svgr";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr()],
-  // base: "/vite-deploy/",
-  resolve: {
-    alias: {
-      "~": (__dirname, "../src"),
-    },
-  },
+  base: "/",
+  // resolve: {
+  //   alias: {
+  //     "~": (__dirname, "../src"),
+  //   },
+  // },
 });
