@@ -1,7 +1,6 @@
 import Button from "../Button/Button";
 import styles from "../styles.module.css";
 import sprite from "../../assets/image/Vector.svg";
-import myImage from "../../assets/image/picture2 1.png";
 import defaultAvatar from "../../assets/image/Hansel.png";
 
 export default function TweetList({ tweets, filter, countFollowers }) {
@@ -12,22 +11,26 @@ export default function TweetList({ tweets, filter, countFollowers }) {
     return tweet.follow.toString() === filter;
   });
 
+  const addComa = (data) => {
+    return data.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   return (
     <>
       <ul className={styles.listItem}>
         {filterTweet.map(({ user, avatar, followers, id, tweets, follow }) => (
           <li key={id} className={styles.card}>
-            <div>
+            <div className={styles.image}>
               <svg width="76" height="22" className={styles.logo}>
                 <use href={sprite + "#icon-Vector"}></use>
               </svg>
-              <img className={styles.image} src={myImage} alt="image" />
             </div>
+
             <div className={styles.Rectangle}>
               <div className={styles.circle}>
                 <div className={styles.backAvatar}>
                   {avatar ? (
-                    <img className={styles.avatar} src={avatar} alt={user} />
+                    <img className={styles.avatar} width="62px" src={avatar} alt={user} />
                   ) : (
                     <img
                       className={styles.avatar}
@@ -39,10 +42,10 @@ export default function TweetList({ tweets, filter, countFollowers }) {
               </div>
               <div className={styles.follow}>
                 <h2 className={styles.text}>
-                  <span>{tweets.toLocaleString()}</span> TWEETS
+                  <span>{addComa(tweets)}</span> TWEETS
                 </h2>
                 <h2>
-                  <span>{followers.toLocaleString()}</span> FOLLOWERS
+                  <span>{addComa(followers)}</span> FOLLOWERS
                 </h2>
                 <Button count={countFollowers} id={id} foll={follow} />
               </div>

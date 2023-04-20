@@ -8,7 +8,7 @@ export default defineConfig({
   base: "/vite-deploy/",
   resolve: {
     alias: {
-      // "~": path.resolve(__dirname, "./src"),
+      "~": (__dirname, "../src"),
     },
   },
 });

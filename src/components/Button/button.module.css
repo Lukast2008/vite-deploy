@@ -10,6 +10,7 @@
   border: none;
   width: 196px;
   margin: 0 auto;
+  cursor: pointer;
 }
 
 .Button:hover {

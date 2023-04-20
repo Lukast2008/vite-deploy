@@ -38,42 +38,48 @@ function Tweets() {
     return updatedTweets;
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await dispatch(fetchUsers({ page, limits: 8 }));
-        if (data.payload.length < 8) {
-          setLoadMore(false);
-        }
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await dispatch(fetchUsers({ page, limits: 8 }));
+  //       // if (data.payload.length < 8) {
+  //       //   setLoadMore(false);
+  //       // }
 
-        const local = JSON.parse(localStorage.getItem("tweet"));
+  //       // const local = JSON.parse(localStorage.getItem("tweet"));
 
-        if (local.length > data.payload.length) {
-          setTweets(local);
-        } else {
-          setTweets(data.payload);
-        }
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    };
-    fetchData();
-  }, []);
+  //       // console.log(local, data.payload);
+
+  //       // if (local === data.payload) {
+  //       //   setTweets(local);
+  //       // } else {
+  //       //   const d = async() => await setTweets(data.payload);
+  //       //   console.log(d);
+  //       //   // localStorage.setItem("tweet", JSON.stringify(data.payload));
+  //       // }
+  //     } catch (error) {
+  //       console.error("Error fetching users:", error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
 
   useEffect(() => {
     page = Number(localStorage.getItem("page")) || 1;
     handlePageChange(page);
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("tweet", JSON.stringify(tweets));
-  }, [tweets]);
+  // useEffect(() => {
+  //   localStorage.setItem("tweet", JSON.stringify(tweets));
+  // }, [tweets]);
 
   const handlePageChange = async (newPage) => {
     page = newPage;
     try {
       const data = await dispatch(fetchUsers({ page: newPage, limits: 8 }));
       localStorage.setItem("page", newPage);
+      localStorage.setItem("tweet", JSON.stringify(data.payload));
       setTweets(data.payload);
       setLoadMore(data.payload.length === 8);
     } catch (error) {
