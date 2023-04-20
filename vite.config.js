@@ -5,7 +5,7 @@ import svgr from "vite-plugin-svgr";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr()],
-  base: "/vite-deploy/",
+  base: "/vite-deploy/tweets",
   resolve: {
     alias: {
       "~": (__dirname, "../src"),
