@@ -8,4 +8,7 @@ import pluginRewriteAll from 'vite-plugin-rewrite-all';
 export default defineConfig({
   plugins: [react(), svgr(), pluginRewriteAll()],
   base: "/vite-deploy/",
+  server: {
+    historyApiFallback: true,
+  },
 });
