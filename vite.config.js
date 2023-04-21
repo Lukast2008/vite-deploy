@@ -7,5 +7,5 @@ import pluginRewriteAll from 'vite-plugin-rewrite-all';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr(), pluginRewriteAll()],
-  base: "/vite-deploy/tweets",
+  base: "/vite-deploy/",
 });
